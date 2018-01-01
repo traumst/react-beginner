@@ -1,5 +1,16 @@
 body {
-    font: 15px sans-serif;;
+    font: 15px sans-serif;
+    position: absolute;
+}
+
+nav {
+    background: #a9a9a9;
+}
+
+nav li {
+    margin: 0 10px;
+    position: relative;
+    display: inline;
 }
 
 .post {

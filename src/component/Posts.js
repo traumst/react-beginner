@@ -39,4 +39,4 @@ class PostListComponent extends Component {
   }
 }
 
-export { PostListComponent };
+export default PostListComponent

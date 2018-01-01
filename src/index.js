@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { PostListComponent } from './component/posts'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import HomeComponent from './component/Home'
+import NavComponent from './component/Navigation'
 
 let posts = [
   {
     id: 1,
     thumbnail: "img/two-eighths.png",
-    title: "PostComponent 1",
-    catergories: [
+    title: "Post 1",
+    categories: [
       {id: 1, name: "cat1"},
       {id: 2 , name: "cat2"}
     ],
@@ -16,8 +18,8 @@ let posts = [
   {
     id: 2,
     thumbnail: "img/two-eighths.png",
-    title: "PostComponent 2",
-    catergories: [
+    title: "Post 2",
+    categories: [
       {id: 1, name: "cat1"},
       {id: 3 , name: "cat3"}
     ],
@@ -25,17 +27,22 @@ let posts = [
   }
 ];
 
-class Home extends Component {
-  constructor (props) {
-    super(props)
-  }
-  
-  render () {
-    return (<PostListComponent posts={posts} />);
-  }
-}
+const About = () => <h1>About Page Goes here</h1>;
+
+const Main = () => (
+  <main>
+    <NavComponent />
+    <Switch>
+      <Route exact path='/' render={() => (
+        <HomeComponent posts={posts} />)}/>
+      <Route path='/About' component={About}/>
+    </Switch>
+  </main>
+);
 
 render (
-  <Home/>,
+  <BrowserRouter>
+      <Main />
+  </BrowserRouter>,
   document.getElementById('root')
 );
