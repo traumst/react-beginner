@@ -20,7 +20,6 @@ mongo.connect(url, function (err, scheme) {
   } else {
     db_conn = scheme;
     collection = scheme.db('test').collection('documents');
-    // input()
   }
 });
 
@@ -47,7 +46,8 @@ function getPosts(callback) {
 }
 
 module.exports = {
-  getPosts
+  getPosts,
+  close
 };
 
 

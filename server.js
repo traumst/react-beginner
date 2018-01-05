@@ -5,11 +5,19 @@ const db = require('./db');
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log(`Server listening on port 3000`)
+const port = 3001;
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
-app.get('/', function(req, res) {
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`)
+});
+
+app.get('/', (req, res) => {
   db.getPosts((err, posts) => {
     if(err) {
       res.json({})
@@ -19,17 +27,7 @@ app.get('/', function(req, res) {
   });
 });
 
-// app.get('/api/signatures', function(req, res) {
-//   Signature.find({}).then(eachOne => {
-//     res.json(eachOne);
-//   })
-// })
-// app.post('/api/signatures', function(req, res) {
-//   Signature.create({
-//     guestSignature: req.body.SignatureOfGuest,
-//     message: req.body.MessageofGuest,
-//   }).then(signature => {
-//     res.json(signature)
-//   });
-// });
-
+process.on('SIGTERM', () => {
+  db.close();
+  console.log("Gracefully shutdown");
+});
