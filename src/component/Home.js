@@ -1,14 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import PostListComponent from './Posts'
 
-class HomeComponent extends Component {
-  constructor (props) {
-    super(props)
-  }
-  
-  render () {
-    return <PostListComponent posts={this.props.posts} />
-  }
-}
+const Home = (props) => (
+  <div>
+    {props.posts ? <PostListComponent posts={props.posts} /> : ''}
+  </div>
+);
 
-export default HomeComponent
+export default Home

@@ -13,6 +13,11 @@ nav li {
     display: inline;
 }
 
+nav li:last-child {
+    /*Log in*/
+
+}
+
 .post {
     margin: 10px;
     border: solid 1px black;

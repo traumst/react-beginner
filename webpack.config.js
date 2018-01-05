@@ -3,12 +3,14 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "assets"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/'
   },
   devServer: {
     // publicPath: "/assets/",
     contentBase: path.join(__dirname, "assets"),
-    port: 3000
+    port: 3000,
+    historyApiFallback: true
   },
   module: {
     loaders: [
